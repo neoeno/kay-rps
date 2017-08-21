@@ -20,42 +20,22 @@ RSpec.describe Game do
     end
   end
 
-  describe "#what_wins_against_this" do
-    context "with rock" do
-      it "returns paper" do
-        expect(game.what_wins_against_this(:rock)).to eq :paper
-      end
-    end
-
-    context "with paper" do
+  describe "#opposing_move" do
+    context "with player_win & rock" do
       it "returns scissors" do
-        expect(game.what_wins_against_this(:paper)).to eq :scissors
+        expect(game.opposing_move(:player_win, :rock)).to eq :scissors
       end
     end
 
-    context "with scissors" do
-      it "returns rock" do
-        expect(game.what_wins_against_this(:scissors)).to eq :rock
-      end
-    end
-  end
-
-  describe "#what_loses_against_this" do
-    context "with rock" do
-      it "returns paper" do
-        expect(game.what_loses_against_this(:rock)).to eq :scissors
-      end
-    end
-
-    context "with paper" do
+    context "with player_lose & rock" do
       it "returns scissors" do
-        expect(game.what_loses_against_this(:paper)).to eq :rock
+        expect(game.opposing_move(:computer_win, :rock)).to eq :paper
       end
     end
 
-    context "with scissors" do
-      it "returns rock" do
-        expect(game.what_loses_against_this(:scissors)).to eq :paper
+    context "with draw & rock" do
+      it "returns scissors" do
+        expect(game.opposing_move(:draw, :rock)).to eq :rock
       end
     end
   end
