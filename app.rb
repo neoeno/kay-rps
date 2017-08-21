@@ -2,11 +2,15 @@ require 'sinatra'
 
 class RPS < Sinatra::Base
   get '/' do
-    erb :index
+    redirect '/sessions/new'
   end
 
-  post '/name' do
+  get '/sessions/new' do
+    erb :new_session
+  end
+
+  post '/sessions' do
     @name = params[:name]
-    "#{@name} plays the game!"
+    erb :name
   end
 end
