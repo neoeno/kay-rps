@@ -1,4 +1,5 @@
 require 'sinatra'
+require_relative './lib/game'
 
 class RPS < Sinatra::Base
   enable :sessions
@@ -22,12 +23,19 @@ class RPS < Sinatra::Base
   end
 
   post '/game' do
-    if params[:move] == "Rock"
-      "You win!"
-    elsif params[:move] == "Paper"
-      "You lose!"
+    move = params[:move]
+    game = Game.new
+    game_result = game.result
+    if game_result == :player_win
+      computer_move = game.what_loses_against_this(move.downcase.to_sym)
+      "You chose #{move.capitalize}, computer chose #{computer_move.capitalize}, you win!"
+    elsif game_result == :computer_win
+      computer_move = game.what_wins_against_this(move.downcase.to_sym)
+      "You chose #{move.capitalize}, computer chose #{computer_move.capitalize}, you lose!"
     else
-      "You draw!"
+      "You chose #{move.capitalize}, computer chose #{move.capitalize}, you draw!"
     end
   end
+
+  run! if app_file == $0
 end
