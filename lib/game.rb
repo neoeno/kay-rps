@@ -1,4 +1,10 @@
 class Game
+  WINNING_COMBINATIONS = [
+    { winner: :rock,     loser: :scissors },
+    { winner: :scissors, loser: :paper },
+    { winner: :paper,    loser: :rock },
+  ]
+
   def result
     [:computer_win, :player_win, :draw].sample
   end
@@ -12,18 +18,16 @@ class Game
   private
 
   def what_wins_against_this(move)
-    {
-      rock: :paper,
-      paper: :scissors,
-      scissors: :rock
-    }[move]
+    winning_combo = WINNING_COMBINATIONS.find do |combo|
+      combo[:loser] == move
+    end
+    winning_combo[:winner]
   end
 
   def what_loses_against_this(move)
-    {
-      paper: :rock,
-      scissors: :paper,
-      rock: :scissors
-    }[move]
+    winning_combo = WINNING_COMBINATIONS.find do |combo|
+      combo[:winner] == move
+    end
+    winning_combo[:loser]
   end
 end

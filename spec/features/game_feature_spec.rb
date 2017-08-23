@@ -45,7 +45,7 @@ RSpec.feature "Game", type: :feature do
       allow_any_instance_of(Game).to receive(:result).and_return(:computer_win)
 
       click_button "Scissors"
-      expect(page).to have_text("You chose Scissors, computer chose Rock, you lose!")
+      expect(page).to have_content("You chose Scissors, computer chose Rock, you lose!")
     end
 
     scenario "User draws the game" do
