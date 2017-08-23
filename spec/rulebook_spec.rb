@@ -1,8 +1,6 @@
 require_relative '../lib/rulebook'
 
 RSpec.describe Rulebook do
-  subject { Rulebook }
-  
   describe "#beats" do
     specify { expect(subject.beats(:rock)).to eq :scissors }
     specify { expect(subject.beats(:scissors)).to eq :paper }

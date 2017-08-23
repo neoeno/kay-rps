@@ -1,7 +1,7 @@
 require 'rulebook'
 
 class Result
-  def initialize(player_move, outcome, rulebook = Rulebook)
+  def initialize(player_move, outcome, rulebook = Rulebook.new)
     @player_move = player_move
     @outcome = outcome
     @rulebook = rulebook
