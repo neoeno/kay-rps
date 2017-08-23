@@ -1,9 +1,9 @@
+ENV['RACK_ENV'] = 'test'
+
 require_relative '../app'
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
-
-ENV['RACK_ENV'] = 'test'
 
 Capybara.app = RPS
 

@@ -1,6 +1,6 @@
-<% if @result.result == :player_win %>
+<% if @result.outcome == :player_win %>
   You chose <%= @result.player_move.capitalize %>, computer chose <%= @result.computer_move.capitalize %>, you win!
-<% elsif @result.result == :computer_win %>
+<% elsif @result.outcome == :computer_win %>
   You chose <%= @result.player_move.capitalize %>, computer chose <%= @result.computer_move.capitalize %>, you lose!
 <% else %>
   You chose <%= @result.player_move.capitalize %>, computer chose <%= @result.computer_move.capitalize %>, you draw!

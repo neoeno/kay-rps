@@ -1,42 +1,26 @@
 require_relative '../lib/game'
 
 RSpec.describe Game do
-  subject(:game) { Game.new }
+  let(:result_class) { double :result_class }
+  subject { Game.new(result_class) }
 
-  describe "#result" do
+  describe "#make_result" do
     it "player wins sometimes" do
       srand(1)
-      expect(game.result).to eq :player_win
+      expect(result_class).to receive(:new).with(:rock, :player_win)
+      subject.make_result(:rock)
     end
 
     it "computer wins sometimes" do
       srand(2)
-      expect(game.result).to eq :computer_win
+      expect(result_class).to receive(:new).with(:rock, :computer_win)
+      subject.make_result(:rock)
     end
 
     it "they draw sometimes" do
       srand(3)
-      expect(game.result).to eq :draw
-    end
-  end
-
-  describe "#opposing_move" do
-    context "with player_win & rock" do
-      it "returns scissors" do
-        expect(game.opposing_move(:player_win, :rock)).to eq :scissors
-      end
-    end
-
-    context "with player_lose & rock" do
-      it "returns scissors" do
-        expect(game.opposing_move(:computer_win, :rock)).to eq :paper
-      end
-    end
-
-    context "with draw & rock" do
-      it "returns scissors" do
-        expect(game.opposing_move(:draw, :rock)).to eq :rock
-      end
+      expect(result_class).to receive(:new).with(:rock, :draw)
+      subject.make_result(:rock)
     end
   end
 end

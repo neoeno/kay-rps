@@ -4,7 +4,7 @@ RSpec.feature "Game", type: :feature do
     scenario "User wins the game" do
       sign_up
 
-      allow_any_instance_of(Game).to receive(:result).and_return(:player_win)
+      allow(Game::RESULTS).to receive(:sample).and_return(:player_win)
 
       click_button "Rock"
       expect(page).to have_text("You chose Rock, computer chose Scissors, you win!")
@@ -13,7 +13,7 @@ RSpec.feature "Game", type: :feature do
     scenario "User loses the game" do
       sign_up
 
-      allow_any_instance_of(Game).to receive(:result).and_return(:computer_win)
+      allow(Game::RESULTS).to receive(:sample).and_return(:computer_win)
 
       click_button "Paper"
       expect(page).to have_text("You chose Paper, computer chose Scissors, you lose!")
@@ -22,7 +22,7 @@ RSpec.feature "Game", type: :feature do
     scenario "User draws the game" do
       sign_up
 
-      allow_any_instance_of(Game).to receive(:result).and_return(:draw)
+      allow(Game::RESULTS).to receive(:sample).and_return(:draw)
 
       click_button "Scissors"
       expect(page).to have_text("You chose Scissors, computer chose Scissors, you draw!")
@@ -33,7 +33,7 @@ RSpec.feature "Game", type: :feature do
     scenario "User wins the game" do
       sign_up
 
-      allow_any_instance_of(Game).to receive(:result).and_return(:player_win)
+      allow(Game::RESULTS).to receive(:sample).and_return(:player_win)
 
       click_button "Paper"
       expect(page).to have_text("You chose Paper, computer chose Rock, you win!")
@@ -42,7 +42,7 @@ RSpec.feature "Game", type: :feature do
     scenario "User loses the game" do
       sign_up
 
-      allow_any_instance_of(Game).to receive(:result).and_return(:computer_win)
+      allow(Game::RESULTS).to receive(:sample).and_return(:computer_win)
 
       click_button "Scissors"
       expect(page).to have_content("You chose Scissors, computer chose Rock, you lose!")
@@ -51,7 +51,7 @@ RSpec.feature "Game", type: :feature do
     scenario "User draws the game" do
       sign_up
 
-      allow_any_instance_of(Game).to receive(:result).and_return(:draw)
+      allow(Game::RESULTS).to receive(:sample).and_return(:draw)
 
       click_button "Rock"
       expect(page).to have_text("You chose Rock, computer chose Rock, you draw!")
